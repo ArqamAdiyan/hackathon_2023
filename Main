@@ -35,16 +35,15 @@ public class Main {
             phone_Number = sc.nextInt();
 
             Account newAccount =  new Account(name, ID, password, address, phone_Number);
+            
+            final String secretKey = "scotia";
+            String id= Encrypter.AES.encrypt(ID,secretKey);
+            String Password= Encrypter.AES.encrypt(password,secretKey);
+            String Address= Encrypter.AES.encrypt(address,secretKey);
+            String Phone_number= Encrypter.AES.encrypt(phone_Number,secretKey);
+            System.out.println(id+"\n"+Password+"\n"+Address+"\n"+Phone_number);
         }
-        // encrypt the account info and add it into a text file
-        final String secretKey = "ssshhhhhhhhhhh!!!!";
 
-        String originalString = "9120318049";
-        String encryptedString = Encrypter.AES.encrypt(originalString, secretKey) ;
-        String decryptedString = Encrypter.AES.decrypt(encryptedString, secretKey) ;
-
-        System.out.println(originalString);
-        System.out.println(encryptedString);
-        System.out.println(decryptedString);
+      
     }
 }
